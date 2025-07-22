@@ -1,7 +1,5 @@
 package com.mjc.stage2.parser;
 
-import com.mjc.stage2.exception.HandlingException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +17,9 @@ public class ChainParserBuilder {
         return this;
     }
 
-    public AbstractTextParser build() throws HandlingException {
+    public AbstractTextParser build() {
         if (parsers.isEmpty()) {
-            throw new HandlingException("No parsers in the chain");
+            throw new IllegalStateException("No parsers in the chain");
         }
         return parsers.get(0);
     }
