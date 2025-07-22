@@ -13,12 +13,14 @@ public class TextComponent extends AbstractTextComponent {
 
     @Override
     public String operation() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (AbstractTextComponent component : componentList) {
-            String delimiter = component.getComponentType().getDelimiter();
-            sb.append(component).append(delimiter);
+            builder.append(component.operation());
+            if (component.getComponentType() == TextComponentType.WORD) {
+                builder.append(" ");
+            }
         }
-        return sb.toString();
+        return builder.toString().trim();
     }
 
     @Override
