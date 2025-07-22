@@ -14,8 +14,12 @@ public class WordParser extends AbstractTextParser {
 
     @Override
     public void parse(AbstractTextComponent abstractTextComponent, String string) {
-        for (char c : string.toCharArray()) {
-            abstractTextComponent.add(new SymbolLeaf(c));
+        String[] chars = string.split("(?<=.)");
+
+        for (String ch : chars) {
+            if (!ch.isEmpty()) {
+                abstractTextComponent.add(new SymbolLeaf(ch.charAt(0)));
+            }
         }
     }
 }

@@ -14,13 +14,24 @@ public class TextComponent extends AbstractTextComponent {
     @Override
     public String operation() {
         StringBuilder builder = new StringBuilder();
+        boolean lastWasWord = false;
+
         for (AbstractTextComponent component : componentList) {
-            builder.append(component.operation());
+            String componentText = component.operation();
+
             if (component.getComponentType() == TextComponentType.WORD) {
-                builder.append(" ");
+                if (lastWasWord) {
+                    builder.append(" ");
+                }
+                lastWasWord = true;
+            } else {
+                lastWasWord = false;
             }
+
+            builder.append(componentText);
         }
-        return builder.toString().trim();
+
+        return builder.toString();
     }
 
     @Override
